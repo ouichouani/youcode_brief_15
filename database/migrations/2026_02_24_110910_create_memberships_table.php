@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('memberships', function (Blueprint $table) {
+
             $table->id();
+            $table->foreignId('member_id')->references('id')->on('users')->onDelete('cascade') ;
+            $table->foreignId("colocation_id")->references('id')->on('colocations')->onDelete('cascade') ;
+            $table->enum('status', ['valid', 'invalid']);
+            $table->enum('role', ['owner', 'member']);
+
             $table->timestamps();
+            
         });
     }
 

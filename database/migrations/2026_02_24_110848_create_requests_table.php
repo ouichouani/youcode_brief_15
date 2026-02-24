@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
+            $table->string('state')->default('pending');
+            $table->foreignId("member_id")->references('id')->on('users')->onDelete('cascade') ;
+            $table->foreignId("colocation_id")->references('id')->on('colocations')->onDelete('cascade') ;
             $table->timestamps();
         });
     }

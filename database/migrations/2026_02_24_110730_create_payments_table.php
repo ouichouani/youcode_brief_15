@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("expense_id")->references('id')->on('expenses') ;
+            $table->foreignId('member_id')->references('id')->on('users') ;
             $table->timestamps();
         });
     }

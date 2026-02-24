@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,16 @@ class ColocationFactory extends Factory
      */
     public function definition(): array
     {
+        $owner = User::where("ismember" , false)->inRandomOrder()->first() ;
+        if($owner){
+            $owner->ismember = true ;
+            $owner->save() ;
+        }
+
         return [
-            //
+            "owner" => $owner?->id ,
+            "name" => fake()->name() ,
+            "status" => "active" ,
         ];
     }
 }

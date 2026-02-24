@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Colocation;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,20 @@ class MembershipFactory extends Factory
      */
     public function definition(): array
     {
+
+        $member = User::where('ismember', false)->inRandomOrder()->first() ;
+        $colocation = Colocation::inRandomOrder()->first()->id ;
+
+        if($member){
+            $member->ismember = true ;
+            $member->save() ;
+        }
+
         return [
-            //
+            "colocation_id" => $colocation ,
+            "member_id" => $member->id ,
+            "role" => "member" ,
+            "status" => "valid" ,
         ];
     }
 }

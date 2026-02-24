@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Membership;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,14 @@ class ExpenseFactory extends Factory
      */
     public function definition(): array
     {
+        $membership = Membership::inRandomOrder()->first();
+        $colocation = $membership->colocation()->id ;
+        $member = $membership->member()->id ;
+
         return [
-            //
+            "colocation_id" => $colocation ,
+            "member_id" => $member ,
+            "amount" => fake()->randomFloat(2 , 10 , 1000) 
         ];
     }
 }

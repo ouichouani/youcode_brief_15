@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->text('bio');
             $table->text('image');
+            $table->boolean('ismember');
             $table->rememberToken();
             $table->timestamps();
         });
