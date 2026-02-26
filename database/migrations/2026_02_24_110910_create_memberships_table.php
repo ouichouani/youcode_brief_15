@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('member_id')->references('id')->on('users')->onDelete('cascade') ;
             $table->foreignId("colocation_id")->references('id')->on('colocations')->onDelete('cascade') ;
-            $table->enum('status', ['valid', 'invalid']);
-            $table->enum('role', ['owner', 'member']);
+            $table->enum('status', ['valid', 'invalid'])->default('valid');
+            $table->enum('role', ['owner', 'member'])->default('member');
 
             $table->timestamps();
             

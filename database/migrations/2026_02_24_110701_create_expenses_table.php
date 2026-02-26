@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->float('amount');
-            $table->foreignId("colocation_id")->references('id')->on('colocations')->onDelete('cascade') ;
-            $table->foreignId('member_id')->references('id')->on('users')->onDelete('cascade') ;
+            $table->foreignId("colocation_id")->references('id')->on('colocations')->onDelete('cascade');
+            $table->foreignId('member_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
 
             $table->timestamps();
         });

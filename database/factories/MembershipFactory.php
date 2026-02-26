@@ -22,6 +22,7 @@ class MembershipFactory extends Factory
         $member = User::where('ismember', false)->inRandomOrder()->first() ;
         $colocation = Colocation::inRandomOrder()->first()->id ;
 
+
         if($member){
             $member->ismember = true ;
             $member->save() ;
@@ -30,7 +31,7 @@ class MembershipFactory extends Factory
         return [
             "colocation_id" => $colocation ,
             "member_id" => $member->id ,
-            "role" => "member" ,
+            "role" => fake()->randomElement(['owner' , 'member']) ,
             "status" => "valid" ,
         ];
     }

@@ -11,11 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colocations', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name') ;
-            $table->foreignId('owner')->nullable()->constrained('users' , 'id')->nullOnDelete() ;
-            $table->enum("status" , ['active' , 'inactive'])->default('active') ;
+            $table->string('name');
+
+            $table->foreignId('member_id')
+                ->constrained('users');
+
+            $table->foreignId('colocation_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -25,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colocations');
+        Schema::dropIfExists('categories');
     }
 };

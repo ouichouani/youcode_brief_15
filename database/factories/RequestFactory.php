@@ -21,7 +21,8 @@ class RequestFactory extends Factory
     {
 
         $reseaver = User::where('ismember', false)->inRandomOrder()->first() ;
-        $colocation = Colocation::inRandomOrder()->first()->id ;
+        if(empty($reseaver)) dd("no free users left ...") ;
+        $colocation_id = Colocation::inRandomOrder()->first()->id ;
         
         if($reseaver){
             $reseaver->ismember = true ;
@@ -29,8 +30,8 @@ class RequestFactory extends Factory
         }
 
         return [
-            'reseaver' => $reseaver->id ,
-            'colocation' => $colocation ,
+            'user_id' => $reseaver->id ,
+            'colocation_id' => $colocation_id ,
             'status' => fake()->randomElement(['pending', 'accepted', 'rejected'])
         ];
     }
