@@ -15,9 +15,7 @@ class Category extends Model
 
     protected $fillable =[
         'name' ,
-        'expense_id' ,
-        'member_id',
-        'users'
+        'colocation_id' ,
     ] ;
 
 

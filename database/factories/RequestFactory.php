@@ -20,19 +20,22 @@ class RequestFactory extends Factory
     public function definition(): array
     {
 
-        $reseaver = User::where('ismember', false)->inRandomOrder()->first() ;
+        // $reseaver = User::where('ismember', false)->inRandomOrder()->first() ;
+        $reseaver = User::inRandomOrder()->first() ; // test
         if(empty($reseaver)) dd("no free users left ...") ;
-        $colocation_id = Colocation::inRandomOrder()->first()->id ;
+        // $colocation_id = Colocation::inRandomOrder()->first()->id ;
+        $colocation_id = 127 ; // test
         
-        if($reseaver){
-            $reseaver->ismember = true ;
-            $reseaver->save() ;
-        }
+        // if($reseaver){
+        //     $reseaver->ismember = true ;
+        //     $reseaver->save() ;
+        // }
 
         return [
             'user_id' => $reseaver->id ,
             'colocation_id' => $colocation_id ,
-            'status' => fake()->randomElement(['pending', 'accepted', 'rejected'])
+            // 'status' => fake()->randomElement(['pending', 'accepted', 'rejected'])
+            'status' => 'pending'
         ];
     }
 }

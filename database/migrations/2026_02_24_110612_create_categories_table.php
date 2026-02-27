@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
 
-            $table->foreignId('member_id')
-                ->constrained('users');
-
             $table->foreignId('colocation_id')
                 ->constrained()
                 ->cascadeOnDelete();

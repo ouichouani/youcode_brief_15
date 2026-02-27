@@ -12,7 +12,8 @@ class Colocation extends Model
 
     protected $fillable = [
         "name",
-        "status"
+        "status" ,
+        "owner" 
     ];
 
     public function users()

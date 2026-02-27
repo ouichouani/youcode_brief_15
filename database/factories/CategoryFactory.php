@@ -22,12 +22,10 @@ class CategoryFactory extends Factory
     {
 
         $Membership = Membership::where('status', 'valid')->where("role", "owner")->inRandomOrder()->first() ;
-        $member_id = $Membership->member_id;
         $colocation_id = $Membership->colocation_id;
 
         return [
             'name' => fake()->name(),
-            'member_id' => $member_id,
             'colocation_id' => $colocation_id
         ];
     }

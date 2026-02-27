@@ -11,13 +11,13 @@ class Request extends Model
     use HasFactory;
 
     protected $fillable = [
-        'state' ,
-        "member_id" ,
+        'status' ,
+        "user_id" ,
         "colocation_id"
     ];
 
     public function users(){
-        return $this->belongsTo(User::class , "member_id") ;
+        return $this->belongsTo(User::class , "user_id") ;
     }
     
     public function colocations(){
